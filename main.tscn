@@ -1,0 +1,93 @@
+[gd_scene load_steps=15 format=3 uid="uid://cf5sqk6dd4esg"]
+
+[ext_resource type="Script" path="res://music_vis.gd" id="1_7bol8"]
+[ext_resource type="Shader" path="res://note_vis_shader.gdshader" id="2_uwn88"]
+[ext_resource type="AudioStream" uid="uid://bib56neltjbos" path="res://zeal.ogg" id="3_8807r"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2soq2"]
+render_priority = 0
+shader = ExtResource("2_uwn88")
+shader_parameter/color = Color(1, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_33vtw"]
+render_priority = 0
+shader = ExtResource("2_uwn88")
+shader_parameter/color = Color(0, 0.756863, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jh5ke"]
+render_priority = 0
+shader = ExtResource("2_uwn88")
+shader_parameter/color = Color(0.717647, 0.623529, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4arlw"]
+render_priority = 0
+shader = ExtResource("2_uwn88")
+shader_parameter/color = Color(0, 0.713726, 0.709804, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wg5fx"]
+render_priority = 0
+shader = ExtResource("2_uwn88")
+shader_parameter/color = Color(1, 0.184314, 0.913725, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gw6ig"]
+render_priority = 0
+shader = ExtResource("2_uwn88")
+shader_parameter/color = Color(0.917647, 0.270588, 0.152941, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_utwia"]
+render_priority = 0
+shader = ExtResource("2_uwn88")
+shader_parameter/color = Color(0.215686, 0.454902, 0.345098, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_grq4g"]
+render_priority = 0
+shader = ExtResource("2_uwn88")
+shader_parameter/color = Color(0.639216, 0.619608, 0.611765, 1)
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_qbs84"]
+
+[sub_resource type="Sky" id="Sky_t5vpa"]
+sky_material = SubResource("PhysicalSkyMaterial_qbs84")
+
+[sub_resource type="Environment" id="Environment_6map0"]
+background_mode = 2
+sky = SubResource("Sky_t5vpa")
+ambient_light_source = 3
+ssao_enabled = true
+glow_enabled = true
+fog_light_color = Color(0, 0, 0, 1)
+
+[node name="Main" type="Node"]
+script = ExtResource("1_7bol8")
+note_materials = Array[Material]([SubResource("ShaderMaterial_2soq2"), SubResource("ShaderMaterial_33vtw"), SubResource("ShaderMaterial_jh5ke"), SubResource("ShaderMaterial_4arlw"), SubResource("ShaderMaterial_wg5fx"), SubResource("ShaderMaterial_gw6ig"), SubResource("ShaderMaterial_utwia"), SubResource("ShaderMaterial_grq4g")])
+
+[node name="MidiPlayer" type="MidiPlayer" parent="."]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+editor_description = ""
+midi = null
+loop = true
+manual_process = true
+script = null
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.392767, 0.353553, -0.848961, 0.480471, 0.866026, 0.138372, 0.784144, -0.353553, -0.510018, -2, 2, 2)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.875, 13.354)
+fov = 41.9
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+size = Vector3(18, 0.1, 1)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_6map0")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_8807r")
+volume_db = -10.0
+autoplay = true
