@@ -84,4 +84,3 @@ environment = SubResource("Environment_6map0")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_ay5cc")
 volume_db = -10.0
-autoplay = true

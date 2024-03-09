@@ -39,6 +39,7 @@ func update_track_data(track: Dictionary, midi: MidiResource):
 	var max_vertical_pos = 0
 	var min_vertical_pos = 1000.0
 	
+	
 	var has_notes = false
 
 	# first, find lowest note
